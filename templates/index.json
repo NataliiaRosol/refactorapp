@@ -1,5 +1,12 @@
 {
   "sections": {
+    "my-featured-products": {
+      "type": "my-featured-products",
+      "settings": {
+        "heading": "Featured Products",
+        "collection": "my-test-collection"
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
