@@ -1,0 +1,103 @@
+@use "sass:color";
+
+@font-face{
+  font-family: 'GothicA1-Black';
+  src: url('https://cdn.shopify.com/s/files/1/0732/7652/2713/files/GothicA1-Black.ttf?v=1736115938') format('ttf');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face{
+  font-family: 'GothicA1-Regular';
+  src: url('https://cdn.shopify.com/s/files/1/0732/7652/2713/files/GothicA1-Regular.ttf?v=1736115938') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face{
+  font-family: 'GothicA1-Bold';
+  src: url('https://cdn.shopify.com/s/files/1/0732/7652/2713/files/GothicA1-Bold.ttf?v=1736115938') format('ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul{
+  list-style: none;
+}
+
+$primary-color: #464B90;
+$header-color: #656874;
+
+.featured-products{
+  padding: 80px 0 147px;
+  background-color: #F5F5F5;
+}
+.container{
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.featured-products__title{
+  margin-bottom: 60px;
+  text-align: center;
+  color: $header-color;
+  font-family: 'GothicA1-Black', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+}
+.featured-products__list{
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(375px, 520px));
+  gap: 120px 40px;
+}
+
+.featured-products__name{
+  font-family: 'GothicA1-Bold', sans-serif;
+  font-size: 22px;
+  color: $header-color;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 11px;
+  line-height: 42px;
+}
+.featured-products__button{
+  color: #fff;
+  font-size: 16px;
+  width: 285px;
+  padding: 18px;
+  background-color: $primary-color;
+  border-radius: 40px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+
+  &:hover{
+    background-color: color.scale($primary-color, $lightness: -10%);
+  }
+}
+
+
+@media (max-width: 1080px) {
+  .featured-products{
+    padding: 43px 0 60px;
+  }
+  .container {
+    grid-template-columns: repeat(auto-fill, minmax(375px, 1fr)); /* На менших екранах мінімальна ширина колонок буде 250px */
+  }
+  .featured-products__title{
+    margin-bottom: 30px;
+    font-size: 26px;
+  }
+  .featured-products__name{
+    margin-top: 30px;
+  }
+  .featured-products__list{
+    gap: 50px;
+  }
+}
+
