@@ -1,6 +1,60 @@
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "My Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Recommended Products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Choose a Collection"
+    }
+  ]
+}
 {% endschema %}
+
+<section class="featured-products">
+  <div class="container">
+    <h2 class="featured-products__title">{{ section.settings.heading }}</h2>
+
+    {% assign cart_product_ids = cart.items | map: 'product_id' %}
+
+    <ul class="featured-products__list">
+      {% if section.settings.collection %}
+        {% assign collection_handle = section.settings.collection %}
+        {% assign collection = collections[collection_handle] %}
+
+        {% if collection and collection.products.size > 0 %}
+          {% for product in collection.products %}
+            {% unless cart_product_ids contains product.id %}
+              <li class="featured-products__item">
+                <picture>
+                  <source media="(max-width: 520px)" srcset="{{ product.featured_image | img_url: '375x260' }}">
+                  <source media="(min-width: 521px)" srcset="{{ product.featured_image | img_url: '520x340' }}">
+                  <img src="{{ product.featured_image | img_url: '520x340' }}" alt="{{ product.title }}">
+                </picture>
+
+                <h3 class="featured-products__name">{{ product.title }}</h3>
+
+                <button
+                  class="featured-products__button"
+                  data-product="{{product}}"
+                  data-productVariant-id="{{ product.variants[0].id }}"
+                >
+                  Add to cart - {{ product.price | money }}
+                </button>
+              </li>
+            {% endunless %}
+          {% endfor %}
+
+        {% else %}
+          <p>No products in this collection.</p>
+        {% endif %}
+      {% endif %}
+    </ul>
+  </div>
+</section>
