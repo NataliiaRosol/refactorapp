@@ -29,9 +29,15 @@
         {% assign collection = collections[collection_handle] %}
 
         {% if collection and collection.products.size > 0 %}
+          {% assign all_added_to_cart = true %}
           {% for product in collection.products %}
             {% unless cart_product_ids contains product.id %}
-              <li class="featured-products__item">
+              {% assign all_added_to_cart = false %}
+              <featured-product
+                id="featured-products"
+                data-product-id="{{ product.id }}"
+                class="featured-products__item"
+              >
                 <picture>
                   <source media="(max-width: 520px)" srcset="{{ product.featured_image | img_url: '375x260' }}">
                   <source media="(min-width: 521px)" srcset="{{ product.featured_image | img_url: '520x340' }}">
@@ -47,7 +53,7 @@
                 >
                   Add to cart - {{ product.price | money }}
                 </button>
-              </li>
+              </featured-product>
             {% endunless %}
           {% endfor %}
 
@@ -56,5 +62,9 @@
         {% endif %}
       {% endif %}
     </ul>
+
+    {% if all_added_to_cart %}
+      <p class="featured-products__empty">All products already added to the cart.</p>
+    {% endif %}
   </div>
 </section>

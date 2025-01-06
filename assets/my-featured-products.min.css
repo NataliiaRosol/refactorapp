@@ -74,9 +74,15 @@ ul {
   text-align: center;
   display: block;
   margin: 0 auto;
+  border: none;
 }
 .featured-products__button:hover {
   background-color: rgb(63, 67.5, 129.6);
+  cursor: pointer;
+}
+
+.featured-products__empty {
+  text-align: center;
 }
 
 @media (max-width: 1080px) {

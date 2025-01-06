@@ -75,10 +75,15 @@ $header-color: #656874;
   text-align: center;
   display: block;
   margin: 0 auto;
+  border: none;
 
   &:hover{
     background-color: color.scale($primary-color, $lightness: -10%);
+    cursor: pointer;
   }
+}
+.featured-products__empty{
+  text-align: center;
 }
 
 
