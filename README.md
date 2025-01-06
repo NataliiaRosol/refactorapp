@@ -54,6 +54,11 @@ npm i gulp-concat -D
 npm install sass --save-dev
 ```
 
+Updating Styles with Gulp
+To update the styles in the project, use the following command:
+```
+gulp styles
+```
 
 4. Login to Shopify
 
